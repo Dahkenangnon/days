@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-03-20",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 5,
+  "isWeekend": false,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": {
+    "fr": "Aïd el-Fitr (Fin du Ramadan)",
+    "en": "Eid al-Fitr"
+  },
+  "holidayType": "religious",
+  "religiousAffiliation": "islamic",
+  "observedDate": null,
+  "legalBasis": null,
+  "source": null,
+  "verifiedAt": "2026-01-01",
+  "confidence": "tentative",
+  "weekNumber": 12,
+  "quarter": 1,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

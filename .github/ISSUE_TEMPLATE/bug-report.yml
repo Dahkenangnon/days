@@ -1,0 +1,74 @@
+name: Library bug report
+description: Report a bug in the @claviscore/days npm package or CLI.
+title: "[bug] <short description>"
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. For data errors (incorrect holidays, wrong working day flags), please use the **Data error** template instead.
+
+  - type: input
+    id: version
+    attributes:
+      label: "@claviscore/days version"
+      description: Output of `npm list @claviscore/days` or the version in your package.json.
+      placeholder: "1.2.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - "Node.js"
+        - "Deno"
+        - "Bun"
+        - "Browser (Chromium)"
+        - "Browser (Firefox)"
+        - "Browser (Safari)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: runtime_version
+    attributes:
+      label: Runtime version
+      placeholder: "Node 20.10.0 / Deno 1.40 / Bun 1.0.30 / Chrome 120"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, including expected vs. actual behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Smallest possible code snippet that triggers the bug. A link to a repository or runnable sandbox is also helpful.
+      render: ts
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message / stack trace (if any)
+      render: shell
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have searched existing issues and this bug has not already been reported.
+          required: true
+        - label: I am using a supported runtime (Node ≥ 18, Deno, Bun, or a modern browser).
+          required: true

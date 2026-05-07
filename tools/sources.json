@@ -1,0 +1,179 @@
+{
+  "BJ": {
+    "timezone": "Africa/Porto-Novo",
+    "countryName": "Bénin",
+    "countryNames": { "fr": "Bénin", "en": "Benin" },
+    "holidays": {
+      "2026": [
+        {
+          "date": "2026-01-01",
+          "name": { "fr": "Jour de l'An", "en": "New Year's Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-01-10",
+          "name": { "fr": "Fête du Vodoun", "en": "Vodoun Day" },
+          "type": "national",
+          "religiousAffiliation": "animist",
+          "legalBasis": "Décret n° 96-040 du 15 février 1996",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-03-20",
+          "name": { "fr": "Aïd el-Fitr (Fin du Ramadan)", "en": "Eid al-Fitr" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": null,
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-04-06",
+          "name": { "fr": "Lundi de Pâques", "en": "Easter Monday" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-05-01",
+          "name": { "fr": "Fête du Travail", "en": "Labour Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-05-14",
+          "name": { "fr": "Ascension", "en": "Ascension Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-05-25",
+          "name": { "fr": "Fête du Lundi de Pentecôte", "en": "Whit Monday" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-05-27",
+          "name": { "fr": "Aïd el-Adha (Tabaski)", "en": "Eid al-Adha" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": null,
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-07-26",
+          "name": { "fr": "Maouloud (Naissance du Prophète)", "en": "Mawlid al-Nabi" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": null,
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-08-01",
+          "name": { "fr": "Fête Nationale (Indépendance)", "en": "Independence Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-08-15",
+          "name": { "fr": "Assomption de Marie", "en": "Assumption of Mary" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-11-01",
+          "name": { "fr": "Toussaint", "en": "All Saints' Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-11-30",
+          "name": { "fr": "Fête Nationale (Proclamation de la République)", "en": "Republic Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        },
+        {
+          "date": "2026-12-25",
+          "name": { "fr": "Noël", "en": "Christmas Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+          "source": "https://jo.gouv.bj/",
+          "confidence": "confirmed"
+        }
+      ]
+    }
+  },
+  "BF": {
+    "timezone": "Africa/Ouagadougou",
+    "countryName": "Burkina Faso",
+    "countryNames": { "fr": "Burkina Faso", "en": "Burkina Faso" },
+    "holidays": {}
+  },
+  "CI": {
+    "timezone": "Africa/Abidjan",
+    "countryName": "Côte d'Ivoire",
+    "countryNames": { "fr": "Côte d'Ivoire", "en": "Ivory Coast" },
+    "holidays": {}
+  },
+  "GW": {
+    "timezone": "Africa/Bissau",
+    "countryName": "Guinée-Bissau",
+    "countryNames": { "fr": "Guinée-Bissau", "en": "Guinea-Bissau", "pt": "Guiné-Bissau" },
+    "holidays": {}
+  },
+  "ML": {
+    "timezone": "Africa/Bamako",
+    "countryName": "Mali",
+    "countryNames": { "fr": "Mali", "en": "Mali" },
+    "holidays": {}
+  },
+  "NE": {
+    "timezone": "Africa/Niamey",
+    "countryName": "Niger",
+    "countryNames": { "fr": "Niger", "en": "Niger" },
+    "holidays": {}
+  },
+  "SN": {
+    "timezone": "Africa/Dakar",
+    "countryName": "Sénégal",
+    "countryNames": { "fr": "Sénégal", "en": "Senegal" },
+    "holidays": {}
+  },
+  "TG": {
+    "timezone": "Africa/Lome",
+    "countryName": "Togo",
+    "countryNames": { "fr": "Togo", "en": "Togo" },
+    "holidays": {}
+  }
+}

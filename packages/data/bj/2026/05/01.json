@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-05-01",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 5,
+  "isWeekend": false,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": {
+    "fr": "Fête du Travail",
+    "en": "Labour Day"
+  },
+  "holidayType": "national",
+  "religiousAffiliation": null,
+  "observedDate": null,
+  "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+  "source": "https://jo.gouv.bj/",
+  "verifiedAt": "2026-01-01",
+  "confidence": "confirmed",
+  "weekNumber": 18,
+  "quarter": 2,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

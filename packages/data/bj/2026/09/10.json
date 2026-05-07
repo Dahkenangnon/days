@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-09-10",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 4,
+  "isWeekend": false,
+  "isPublicHoliday": false,
+  "isWorkingDay": true,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": null,
+  "holidayType": null,
+  "religiousAffiliation": null,
+  "observedDate": null,
+  "legalBasis": null,
+  "source": null,
+  "verifiedAt": "2026-01-01",
+  "confidence": "confirmed",
+  "weekNumber": 37,
+  "quarter": 3,
+  "workingDayOfMonth": 8,
+  "workingDayOfYear": 174
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-01-10",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 6,
+  "isWeekend": true,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": {
+    "fr": "Fête du Vodoun",
+    "en": "Vodoun Day"
+  },
+  "holidayType": "national",
+  "religiousAffiliation": "animist",
+  "observedDate": null,
+  "legalBasis": "Décret n° 96-040 du 15 février 1996",
+  "source": "https://jo.gouv.bj/",
+  "verifiedAt": "2026-01-01",
+  "confidence": "confirmed",
+  "weekNumber": 2,
+  "quarter": 1,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

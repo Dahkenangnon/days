@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-11-01",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 7,
+  "isWeekend": true,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": {
+    "fr": "Toussaint",
+    "en": "All Saints' Day"
+  },
+  "holidayType": "religious",
+  "religiousAffiliation": "christian",
+  "observedDate": null,
+  "legalBasis": "Loi n° 98-004 du 27 janvier 1998",
+  "source": "https://jo.gouv.bj/",
+  "verifiedAt": "2026-01-01",
+  "confidence": "confirmed",
+  "weekNumber": 44,
+  "quarter": 4,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

@@ -1,0 +1,90 @@
+name: Data error
+description: Report an incorrect public holiday, working day flag, or other calendar data error.
+title: "[data] <country> <date> — short description"
+labels: ["data-error", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping keep DaysUnit calendar data accurate. Please provide an authoritative source so a maintainer can verify the correction.
+
+        > If the error could affect payroll, SYSCOHADA journal closings, or other financial systems, please use the [private security channel](../../SECURITY.md) instead of opening a public issue.
+
+  - type: dropdown
+    id: country
+    attributes:
+      label: Country
+      description: ISO 3166-1 alpha-2 code of the affected country.
+      options:
+        - BJ — Bénin
+        - BF — Burkina Faso
+        - CI — Côte d'Ivoire
+        - GW — Guinée-Bissau
+        - ML — Mali
+        - NE — Niger
+        - SN — Sénégal
+        - TG — Togo
+        - Other / not yet supported
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Affected date(s)
+      description: ISO 8601 format (YYYY-MM-DD). Use a comma-separated list or a range (YYYY-MM-DD..YYYY-MM-DD) for multiple dates.
+      placeholder: "2026-03-20"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: error_type
+    attributes:
+      label: Type of error
+      options:
+        - Missing public holiday
+        - Incorrect public holiday (wrong date)
+        - Holiday should not be a holiday
+        - Wrong holiday name / spelling
+        - Incorrect isWorkingDay / isWeekend flag
+        - Incorrect isFirstWorkingDayOfMonth / isLastWorkingDayOfMonth
+        - Wrong legal basis or source URL
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong, and what should the correct value be?
+      placeholder: |
+        Example: 2026-03-20 should be marked as a public holiday (Eid al-Fitr) per Décret n° 2026-XYZ. The current file shows isPublicHoliday: false.
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Authoritative source URL
+      description: Link to a Journal Officiel decree, ministry announcement, or other government document confirming the correct data.
+      placeholder: "https://jo.gouv.bj/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: file_path
+    attributes:
+      label: Affected file path(s) (if known)
+      description: e.g. `packages/data/bj/2026/03/20.json`
+      render: shell
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have searched existing issues and this error has not already been reported.
+          required: true
+        - label: The source URL points to an official government document (Journal Officiel, ministry decree, etc.) — not a news article or third-party calendar.
+          required: true

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-07-26",
+  "country": "BJ",
+  "countryName": "Bénin",
+  "countryNames": {
+    "fr": "Bénin",
+    "en": "Benin"
+  },
+  "timezone": "Africa/Porto-Novo",
+  "dayOfWeek": 7,
+  "isWeekend": true,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": false,
+  "holidayName": {
+    "fr": "Maouloud (Naissance du Prophète)",
+    "en": "Mawlid al-Nabi"
+  },
+  "holidayType": "religious",
+  "religiousAffiliation": "islamic",
+  "observedDate": null,
+  "legalBasis": null,
+  "source": null,
+  "verifiedAt": "2026-01-01",
+  "confidence": "tentative",
+  "weekNumber": 30,
+  "quarter": 3,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

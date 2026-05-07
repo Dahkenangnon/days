@@ -1,0 +1,56 @@
+name: Feature request
+description: Propose a new feature, API method, or data field for DaysUnit.
+title: "[feat] <short description>"
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Please describe the use case so maintainers can evaluate scope and design.
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - "@claviscore/days library API"
+        - CLI (days binary)
+        - Data schema (new field, new endpoint)
+        - New country / region coverage
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What are you trying to accomplish? What does the current API or data make difficult?
+      placeholder: |
+        Example: I am building a payroll system and need to compute the number of working days between two arbitrary dates that may span multiple years. Currently `range()` requires both dates to be ISO strings, but I'd like to pass Date objects.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: A description of the API, method signature, schema field, or behavior you'd like to see.
+      render: ts
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you've tried, or other designs you considered.
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have searched existing issues and discussions and this has not already been proposed.
+          required: true
+        - label: This proposal does not break the runtime-agnostic constraint (no Node.js built-ins in the main library bundle).
+          required: false

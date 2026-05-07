@@ -1,0 +1,22 @@
+{
+  "name": "daysunit-monorepo",
+  "private": true,
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "scripts": {
+    "validate": "pnpm --filter @claviscore/data run validate",
+    "build:js": "pnpm --filter @claviscore/days run build",
+    "test:js": "pnpm --filter @claviscore/days run test",
+    "typecheck:js": "pnpm --filter @claviscore/days run typecheck",
+    "generate": "tsx tools/generate-aggregates.ts"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

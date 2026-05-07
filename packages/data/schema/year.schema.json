@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://days.claviscore.com/schema/year.schema.json",
+  "title": "YearRecord",
+  "type": "object",
+  "required": [
+    "schemaVersion", "country", "countryName", "countryNames", "timezone",
+    "year",
+    "workingDaysCount", "weekendDaysCount", "publicHolidaysCount", "days"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion":       { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "country":             { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "countryName":         { "type": "string", "minLength": 1 },
+    "countryNames": {
+      "type": "object",
+      "required": ["fr", "en"],
+      "additionalProperties": { "type": "string" },
+      "properties": {
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "pt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "timezone":            { "type": "string", "minLength": 1 },
+    "year":                { "type": "integer", "minimum": 2000 },
+    "workingDaysCount":    { "type": "integer", "minimum": 0 },
+    "weekendDaysCount":    { "type": "integer", "minimum": 0 },
+    "publicHolidaysCount": { "type": "integer", "minimum": 0 },
+    "days": {
+      "type": "array",
+      "minItems": 365,
+      "maxItems": 366,
+      "items": {
+        "type": "object",
+        "required": [
+          "date", "dayOfWeek",
+          "isWeekend", "isPublicHoliday", "isWorkingDay",
+          "isFirstWorkingDayOfMonth", "isLastWorkingDayOfMonth",
+          "isRamadanPeriod",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "date":                     { "type": "string", "format": "date" },
+          "dayOfWeek":                { "type": "integer", "minimum": 1, "maximum": 7 },
+          "isWeekend":                { "type": "boolean" },
+          "isPublicHoliday":          { "type": "boolean" },
+          "isWorkingDay":             { "type": "boolean" },
+          "isFirstWorkingDayOfMonth": { "type": "boolean" },
+          "isLastWorkingDayOfMonth":  { "type": "boolean" },
+          "isRamadanPeriod":          { "type": "boolean" },
+          "confidence":               { "type": "string", "enum": ["confirmed", "tentative", "ai-generated"] }
+        }
+      }
+    }
+  }
+}

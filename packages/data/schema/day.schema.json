@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://days.claviscore.com/schema/day.schema.json",
+  "title": "DayRecord",
+  "type": "object",
+  "required": [
+    "schemaVersion", "date", "country", "countryName", "countryNames",
+    "timezone", "dayOfWeek",
+    "isWeekend", "isPublicHoliday", "isWorkingDay",
+    "isFirstWorkingDayOfMonth", "isLastWorkingDayOfMonth",
+    "isRamadanPeriod",
+    "holidayName", "holidayType", "religiousAffiliation", "observedDate",
+    "legalBasis", "source", "verifiedAt", "confidence",
+    "weekNumber", "quarter", "workingDayOfMonth", "workingDayOfYear"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion":     { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "date":              { "type": "string", "format": "date" },
+    "country":           { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "countryName":       { "type": "string", "minLength": 1 },
+    "countryNames": {
+      "type": "object",
+      "required": ["fr", "en"],
+      "additionalProperties": { "type": "string" },
+      "properties": {
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "pt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "timezone":          { "type": "string", "minLength": 1 },
+    "dayOfWeek":         { "type": "integer", "minimum": 1, "maximum": 7 },
+    "isWeekend":         { "type": "boolean" },
+    "isPublicHoliday":   { "type": "boolean" },
+    "isWorkingDay":      { "type": "boolean" },
+    "isFirstWorkingDayOfMonth": { "type": "boolean" },
+    "isLastWorkingDayOfMonth":  { "type": "boolean" },
+    "isRamadanPeriod":   { "type": "boolean" },
+    "holidayName": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["fr", "en"],
+          "additionalProperties": { "type": "string" },
+          "properties": {
+            "fr": { "type": "string", "minLength": 1 },
+            "en": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    },
+    "holidayType": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "enum": ["national", "religious", "observance", "bridge", "school"] }
+      ]
+    },
+    "religiousAffiliation": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "enum": ["christian", "islamic", "secular", "animist"] }
+      ]
+    },
+    "observedDate":       { "oneOf": [{ "type": "null" }, { "type": "string", "format": "date" }] },
+    "legalBasis":         { "oneOf": [{ "type": "null" }, { "type": "string" }] },
+    "source":             { "oneOf": [{ "type": "null" }, { "type": "string", "format": "uri" }] },
+    "verifiedAt":         { "type": "string", "format": "date" },
+    "confidence":         { "type": "string", "enum": ["confirmed", "tentative", "ai-generated"] },
+    "weekNumber":         { "type": "integer", "minimum": 1, "maximum": 53 },
+    "quarter":            { "type": "integer", "minimum": 1, "maximum": 4 },
+    "workingDayOfMonth":  { "oneOf": [{ "type": "null" }, { "type": "integer", "minimum": 1 }] },
+    "workingDayOfYear":   { "oneOf": [{ "type": "null" }, { "type": "integer", "minimum": 1 }] }
+  }
+}

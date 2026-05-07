@@ -1,0 +1,75 @@
+{
+  "name": "@claviscore/days",
+  "version": "1.0.0",
+  "description": "Runtime-agnostic JavaScript client for the DaysUnit UEMOA calendar service — working days, public holidays, and calendar metadata for West African countries.",
+  "license": "MIT",
+  "author": {
+    "name": "Justin Dah-kenangnon",
+    "email": "dah.kenangnon@gmail.com",
+    "url": "https://github.com/Dahkenangnon"
+  },
+  "homepage": "https://days.claviscore.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dahkenangnon/days.git",
+    "directory": "packages/js"
+  },
+  "bugs": {
+    "url": "https://github.com/Dahkenangnon/days/issues"
+  },
+  "keywords": [
+    "calendar",
+    "working-days",
+    "public-holidays",
+    "uemoa",
+    "west-africa",
+    "ecowas",
+    "payroll",
+    "syscohada",
+    "iso-8601",
+    "benin",
+    "ivory-coast",
+    "senegal",
+    "burkina-faso",
+    "mali",
+    "niger",
+    "togo",
+    "guinea-bissau"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "bin": {
+    "days": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types":   "./dist/index.d.ts",
+      "browser": "./dist/index.js",
+      "import":  "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.30",
+    "@vitest/coverage-v8": "^2.1.9",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.9"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}

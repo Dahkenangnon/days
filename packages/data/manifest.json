@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "lastUpdated": "2026-05-07",
+  "countries": ["BJ"],
+  "yearsAvailable": [2026],
+  "baseUrl": "https://days.claviscore.com",
+  "endpoints": {
+    "day":      "/{country}/{year}/{month}/{day}.json",
+    "month":    "/{country}/{year}/{month}.json",
+    "year":     "/{country}/{year}.json",
+    "manifest": "/manifest.json"
+  },
+  "schemaUrls": {
+    "day":      "/schema/day.schema.json",
+    "month":    "/schema/month.schema.json",
+    "year":     "/schema/year.schema.json",
+    "manifest": "/schema/manifest.schema.json"
+  }
+}

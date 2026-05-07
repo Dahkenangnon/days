@@ -1,0 +1,59 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# local CLI cache
+.days/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# coverage / test output
+coverage/
+.nyc_output/
+*.lcov
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# env
+.env
+.env.local
+.env.*.local
+
+# editor / IDE
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+
+# private / internal documentation — keep out of public repo
+temp/
+
+# claude / agent-local state
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# generated data — keep schema files, manifest, and seed data
+# use explicit allowlist below
+packages/data/**/*.json
+!packages/data/schema/**/*.json
+!packages/data/manifest.json
+!packages/data/bj/2026.json
+!packages/data/bj/2026/**/*.json
