@@ -11,7 +11,8 @@
     "build:js": "pnpm --filter @claviscore/days run build",
     "test:js": "pnpm --filter @claviscore/days run test",
     "typecheck:js": "pnpm --filter @claviscore/days run typecheck",
-    "generate": "tsx tools/generate-aggregates.ts"
+    "generate": "tsx tools/generate-aggregates.ts",
+    "render-assets": "bash tools/render-assets.sh"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

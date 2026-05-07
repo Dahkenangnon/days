@@ -30,3 +30,34 @@
 # Landing page — short cache, HTML
 /
   Cache-Control: public, max-age=3600
+
+# Brand assets (favicons, banners, logos) — long cache
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+/favicon-32.png
+  Cache-Control: public, max-age=604800
+
+/favicon-192.png
+  Cache-Control: public, max-age=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+
+/banner.png
+  Cache-Control: public, max-age=604800
+
+/banner-square.png
+  Cache-Control: public, max-age=604800
+
+/og-image.png
+  Cache-Control: public, max-age=604800
+
+/logo.svg
+  Cache-Control: public, max-age=604800
+
+/logo-wordmark.svg
+  Cache-Control: public, max-age=604800
+
+/logo-wordmark-dark.svg
+  Cache-Control: public, max-age=604800

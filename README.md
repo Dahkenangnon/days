@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="DaysUnit — open calendar data for West Africa" width="100%">
+</p>
+
 # DaysUnit
 
 **Zero-infrastructure, open calendar data for West Africa.**

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img"
+     aria-label="DaysUnit 1.0 — open calendar data for West Africa">
+  <title>DaysUnit 1.0 — open calendar data for West Africa</title>
+
+  <defs>
+    <linearGradient id="og-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#0a358a"/>
+      <stop offset="55%" stop-color="#0e3fa8"/>
+      <stop offset="100%" stop-color="#1146b8"/>
+    </linearGradient>
+
+    <radialGradient id="og-halo" cx="0" cy="0" r="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"  stop-color="#5b8cff" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#5b8cff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="og-dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#ffffff" fill-opacity="0.08"/>
+    </pattern>
+
+    <pattern id="og-cal" x="0" y="0" width="56" height="56" patternUnits="userSpaceOnUse">
+      <rect x="0.5" y="0.5" width="55" height="55" fill="none"
+            stroke="#ffffff" stroke-opacity="0.20" stroke-width="1"/>
+    </pattern>
+
+    <linearGradient id="og-calFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#000000"/>
+      <stop offset="40%"  stop-color="#000000"/>
+      <stop offset="65%"  stop-color="#777777"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <mask id="og-calMask">
+      <rect width="1280" height="640" fill="url(#og-calFade)"/>
+    </mask>
+
+    <style><![CDATA[
+      .title    { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+                  font-weight: 600; letter-spacing: -0.025em; fill: #ffffff; }
+      .title-em { font-family: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+                  font-style: italic; font-weight: 400; letter-spacing: -0.01em; fill: #b9d4ff; }
+      .sub      { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+                  fill: #ffffff; }
+      .desc     { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+                  fill: #ffffff; fill-opacity: 0.78; }
+      .mono     { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+      .pill-bg  { fill: #ffffff; }
+      .pill-tx  { fill: #0a358a; font-weight: 500; }
+      .marker   { stroke: #ffffff; stroke-opacity: 0.35; stroke-width: 1; fill: none; }
+    ]]></style>
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1280" height="640" fill="url(#og-bg)"/>
+  <rect width="1280" height="640" fill="url(#og-halo)"/>
+  <rect width="1280" height="640" fill="url(#og-dots)"/>
+
+  <!-- Right-side calendar grid decoration -->
+  <g mask="url(#og-calMask)">
+    <rect x="640" y="-30" width="700" height="700" fill="url(#og-cal)"/>
+    <!-- highlighted "working day" cells -->
+    <rect x="864.5"  y="135.5" width="55" height="55" fill="#ffffff" fill-opacity="0.12"/>
+    <rect x="920.5"  y="135.5" width="55" height="55" fill="#ffffff" fill-opacity="0.07"/>
+    <rect x="1032.5" y="191.5" width="55" height="55" fill="#34d399" fill-opacity="0.32"/>
+    <rect x="1088.5" y="191.5" width="55" height="55" fill="#ffffff" fill-opacity="0.07"/>
+    <rect x="976.5"  y="247.5" width="55" height="55" fill="#ffffff" fill-opacity="0.07"/>
+    <rect x="1144.5" y="135.5" width="55" height="55" fill="#34d399" fill-opacity="0.18"/>
+    <rect x="920.5"  y="247.5" width="55" height="55" fill="#ffffff" fill-opacity="0.10"/>
+    <rect x="1088.5" y="303.5" width="55" height="55" fill="#34d399" fill-opacity="0.10"/>
+    <rect x="864.5"  y="359.5" width="55" height="55" fill="#ffffff" fill-opacity="0.08"/>
+    <rect x="976.5"  y="359.5" width="55" height="55" fill="#ffffff" fill-opacity="0.05"/>
+  </g>
+
+  <!-- Corner crosshair markers -->
+  <g class="marker">
+    <path d="M 32 22 L 32 42 M 22 32 L 42 32"/>
+    <path d="M 1248 22 L 1248 42 M 1238 32 L 1258 32"/>
+    <path d="M 32 598 L 32 618 M 22 608 L 42 608"/>
+    <path d="M 1248 598 L 1248 618 M 1238 608 L 1258 608"/>
+  </g>
+
+  <!-- ─── Eyebrow pill ─────────────────────────────────────── -->
+  <g transform="translate(72,90)">
+    <rect x="0" y="0" width="216" height="34" rx="17"
+          fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-opacity="0.55"/>
+    <circle cx="16" cy="17" r="4" fill="#34d399"/>
+    <text x="30" y="22" class="mono" font-size="13" fill="#34d399"
+          letter-spacing="0.03em">LIVE · v1.0 · CDN-SERVED</text>
+  </g>
+
+  <!-- ─── Headline ─────────────────────────────────────────── -->
+  <text x="72" y="240" class="title" font-size="84">DaysUnit 1.0</text>
+  <text x="72" y="328" class="title" font-size="84">for <tspan class="title-em">West&#160;Africa</tspan>.</text>
+
+  <!-- ─── Subtitle ─────────────────────────────────────────── -->
+  <text x="72" y="388" class="desc" font-size="22">
+    <tspan x="72" dy="0">Working days, public holidays, and calendar metadata</tspan>
+    <tspan x="72" dy="30">for UEMOA — static JSON over a global CDN.</tspan>
+  </text>
+
+  <!-- ─── Feature pills ────────────────────────────────────── -->
+  <g transform="translate(72,470)">
+    <!-- Pill 1 -->
+    <g>
+      <rect x="0" y="0" width="220" height="42" rx="21" class="pill-bg"/>
+      <g transform="translate(16,12)" stroke="#0a358a" stroke-width="1.7" fill="none"
+         stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 9c0 5-5 9-5 9S-1 14-1 9a5 5 0 0 1 10 0z" transform="translate(4,0)"/>
+        <circle cx="8" cy="9" r="1.7" fill="#0a358a"/>
+      </g>
+      <text x="48" y="27" class="pill-tx" font-size="15">UEMOA · 8 countries</text>
+    </g>
+    <!-- Pill 2 -->
+    <g transform="translate(238,0)">
+      <rect x="0" y="0" width="232" height="42" rx="21" class="pill-bg"/>
+      <g transform="translate(14,12)" stroke="#0a358a" stroke-width="1.7" fill="none"
+         stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="14" height="14" rx="2"/>
+        <path d="M2 8 h14 M6 1 v4 M12 1 v4"/>
+      </g>
+      <text x="46" y="27" class="pill-tx" font-size="15">Static JSON · ISO 8601</text>
+    </g>
+    <!-- Pill 3 -->
+    <g transform="translate(488,0)">
+      <rect x="0" y="0" width="208" height="42" rx="21" class="pill-bg"/>
+      <g transform="translate(16,12)" stroke="#0a358a" stroke-width="1.7" fill="none"
+         stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="9" r="8"/>
+        <path d="M1 9 H17 M9 1 a12 12 0 0 1 0 16 a12 12 0 0 1 0 -16"/>
+      </g>
+      <text x="48" y="27" class="pill-tx" font-size="15">CORS-enabled CDN</text>
+    </g>
+  </g>
+
+  <!-- ─── Bottom row: domain + GitHub handle ───────────────── -->
+  <line x1="72" y1="552" x2="1208" y2="552"
+        stroke="#ffffff" stroke-opacity="0.18" stroke-width="1"/>
+
+  <g transform="translate(72,572)">
+    <g transform="translate(0,8)" stroke="#b9d4ff" stroke-width="1.5" fill="none"
+       stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="9" r="8"/>
+      <path d="M1 9 H17 M9 1 a12 12 0 0 1 0 16 a12 12 0 0 1 0 -16"/>
+    </g>
+    <text x="28" y="22" class="mono" font-size="16" fill="#ffffff">days.claviscore.com</text>
+  </g>
+
+  <text x="1208" y="594" class="mono" font-size="14" fill="#b9d4ff" text-anchor="end" fill-opacity="0.85">
+    github.com/Dahkenangnon/days
+  </text>
+</svg>
