@@ -684,13 +684,9 @@ DaysUnit uses a dual licence so that code and data stay legally distinct:
 | Source code (`packages/js/`, `tools/`) | [MIT](LICENSE) |
 | Calendar data (`packages/data/`) | [CC BY 4.0](packages/data/LICENSE) |
 
-If you redistribute the calendar data, please attribute it:
-
-> Calendar data from DaysUnit, by Justin Dah-kenangnon, CC BY 4.0.
+If you redistribute the calendar data, please attribute it as required by CC BY 4.0 — see [`packages/data/LICENSE`](packages/data/LICENSE) for the suggested attribution string.
 
 See [DISCLAIMER.md](DISCLAIMER.md) for the standard "as-is, no warranty" notice that applies to both.
-
-© 2026-Present Justin Dah-kenangnon.
 
 ---
 
