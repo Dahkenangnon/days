@@ -1,12 +1,32 @@
+# Cloudflare Pages headers — note: when multiple rules match a path, headers
+# are MERGED (cumulative), so we keep Cache-Control and Content-Type out of the
+# wildcard rule and set them per-pattern to avoid duplicate / conflicting
+# directives.
+
+# Global headers (CORS + security only)
 /*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, OPTIONS
-  Content-Type: application/json; charset=utf-8
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Access-Control-Max-Age: 86400
   X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
 
+# Manifest — 1 hour cache (changes when countries / years are added)
 /manifest.json
+  Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
+# JSON Schemas — 7 days, immutable (versioned via path)
 /schema/*
+  Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=604800, immutable
+
+# Calendar data — 1 day cache, week-long stale-while-revalidate
+# (Add one rule per country as data is published.)
+/bj/*
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Landing page — short cache, HTML
+/
+  Cache-Control: public, max-age=3600
