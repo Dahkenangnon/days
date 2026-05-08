@@ -405,6 +405,91 @@
     .flag-row .flag-value.yes { color: var(--accent); }
     .flag-row .flag-value.no  { color: var(--ink-faint); }
 
+    /* ─── Today: country select ──────────────────────────────── */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .today-country-select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .today-country-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      font: inherit;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 3px 22px 3px 7px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .today-country-select:hover {
+      color: var(--ink);
+      border-color: var(--line-strong);
+      background: var(--surface-2);
+    }
+    .today-country-select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .today-country-select option:disabled { color: var(--ink-faint); }
+    .today-country-caret {
+      position: absolute;
+      right: 7px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--ink-soft);
+    }
+
+    /* ─── Today: navigation controls ─────────────────────────── */
+    .today-nav {
+      display: flex;
+      gap: 6px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .today-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    .today-nav-btn:hover:not(:disabled) {
+      color: var(--ink);
+      background: var(--surface-2);
+      border-color: var(--line-strong);
+    }
+    .today-nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .today-nav-btn svg { color: var(--ink-faint); }
+    .today-nav-btn:hover:not(:disabled) svg { color: var(--ink-soft); }
+    .today-nav-today { margin-left: auto; margin-right: auto; }
+
     /* ─── Sections ───────────────────────────────────────────── */
     section { padding: 56px 0; }
     section + section { border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
@@ -723,7 +808,23 @@
     <article class="today-card" id="today-card" aria-live="polite">
       <div class="today-head">
         <span class="today-eyebrow">Today, in real time</span>
-        <span class="today-country">BJ · Bénin</span>
+        <label class="today-country-select-wrap" for="today-country-select">
+          <span class="visually-hidden">Country</span>
+          <select id="today-country-select" class="today-country-select" aria-label="Country">
+            <option value="BJ" data-name="Bénin">BJ · Bénin</option>
+            <option value="BF" data-name="Burkina Faso" disabled>BF · Burkina Faso</option>
+            <option value="CI" data-name="Côte d'Ivoire" disabled>CI · Côte d'Ivoire</option>
+            <option value="GW" data-name="Guinée-Bissau" disabled>GW · Guinée-Bissau</option>
+            <option value="ML" data-name="Mali" disabled>ML · Mali</option>
+            <option value="NE" data-name="Niger" disabled>NE · Niger</option>
+            <option value="SN" data-name="Sénégal" disabled>SN · Sénégal</option>
+            <option value="TG" data-name="Togo" disabled>TG · Togo</option>
+          </select>
+          <svg class="today-country-caret" width="10" height="10" viewBox="0 0 12 12" fill="none"
+               stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+          </svg>
+        </label>
       </div>
       <div class="today-date" id="today-date"><span class="skeleton" style="width:14ch"></span></div>
       <div class="today-status" id="today-status"><span class="skeleton" style="width:18ch"></span></div>
@@ -732,6 +833,25 @@
         <div class="flag-row"><span>Public holiday</span> <span class="skeleton" style="width:3ch"></span></div>
         <div class="flag-row"><span>First WD of month</span> <span class="skeleton" style="width:3ch"></span></div>
         <div class="flag-row"><span>Last WD of month</span> <span class="skeleton" style="width:3ch"></span></div>
+      </div>
+      <div class="today-nav" role="group" aria-label="Browse days">
+        <button type="button" class="today-nav-btn" id="today-prev" aria-label="Previous day" title="Previous day">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Prev</span>
+        </button>
+        <button type="button" class="today-nav-btn today-nav-today" id="today-reset" aria-label="Jump to today" title="Jump to today">
+          Today
+        </button>
+        <button type="button" class="today-nav-btn" id="today-next" aria-label="Next day" title="Next day">
+          <span>Next</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       </div>
     </article>
   </div>
@@ -797,14 +917,14 @@ m.workingDays() <span class="com">// → 21</span>
       <div class="code-card span2">
         <div class="code-head">
           <span class="code-tag">CLI · offline cache</span>
-          <button type="button" class="copy-btn" data-copy="npx days pull --country BJ --year 2026
-npx days cache list
-npx days cache clear">Copy</button>
+          <button type="button" class="copy-btn" data-copy="npx @claviscore/days pull --country BJ --year 2026
+npx @claviscore/days cache list
+npx @claviscore/days cache clear">Copy</button>
         </div>
 <pre><span class="com"># pre-download a country's calendar for offline lookup (Node / Deno / Bun)</span>
-<span class="kw">npx</span> days pull --country BJ --year 2026
-<span class="kw">npx</span> days cache list
-<span class="kw">npx</span> days cache clear</pre>
+<span class="kw">npx</span> @claviscore/days pull --country BJ --year 2026
+<span class="kw">npx</span> @claviscore/days cache list
+<span class="kw">npx</span> @claviscore/days cache clear</pre>
       </div>
 
     </div>
@@ -1033,30 +1153,81 @@ npx days cache clear">Copy</button>
     })
   }
 
-  async function loadToday() {
-    var today = isoToday()
-    var url = '/bj/' + today.slice(0, 4) + '/' + today.slice(5, 7) + '.json'
-    var dateNode   = document.getElementById('today-date')
+  // ─── Today: state + navigation ────────────────────────────
+  var todayState = { country: 'BJ', date: isoToday() }
+  var monthCache = new Map() // 'BJ-2026-01' → month JSON
+  var inFlight = null        // current AbortController, if any
+
+  function shiftDate(iso, deltaDays) {
+    var d = new Date(iso + 'T00:00:00Z')
+    d.setUTCDate(d.getUTCDate() + deltaDays)
+    return d.toISOString().slice(0, 10)
+  }
+
+  function renderEntry(entry, dateStr) {
+    document.getElementById('today-date').textContent = fmtDateLong(dateStr)
     var statusNode = document.getElementById('today-status')
-    var flagsNode  = document.getElementById('today-flags')
+    clear(statusNode)
+    buildBadges(entry).forEach(function (b) { statusNode.appendChild(b) })
+    var flagsNode = document.getElementById('today-flags')
+    clear(flagsNode)
+    buildFlagRows(entry).forEach(function (row) { flagsNode.appendChild(row) })
+  }
 
-    try {
-      var r = await fetch(url, { cache: 'no-cache' })
-      if (!r.ok) throw new Error('http ' + r.status)
-      var month = await r.json()
-      var entry = (month.days || []).find(function (d) { return d.date === today })
-      if (!entry) throw new Error('no entry for ' + today)
+  function renderUnavailable(dateStr) {
+    document.getElementById('today-date').textContent = fmtDateLong(dateStr)
+    document.getElementById('today-status').textContent = 'Data unavailable for this date'
+    clear(document.getElementById('today-flags'))
+  }
 
-      dateNode.textContent = fmtDateLong(today)
-      clear(statusNode)
-      buildBadges(entry).forEach(function (b) { statusNode.appendChild(b) })
-      clear(flagsNode)
-      buildFlagRows(entry).forEach(function (row) { flagsNode.appendChild(row) })
-    } catch (_) {
-      dateNode.textContent = fmtDateLong(today)
-      statusNode.textContent = 'Live data unavailable'
-      clear(flagsNode)
+  async function loadCurrent() {
+    var date = todayState.date
+    var country = todayState.country
+    var ym = date.slice(0, 7) // YYYY-MM
+    var key = country + '-' + ym
+
+    var month = monthCache.get(key)
+    if (!month) {
+      if (inFlight) inFlight.abort()
+      inFlight = new AbortController()
+      var url = '/' + country.toLowerCase() + '/' + date.slice(0, 4) + '/' + date.slice(5, 7) + '.json'
+      try {
+        var r = await fetch(url, { cache: 'no-cache', signal: inFlight.signal })
+        if (!r.ok) throw new Error('http ' + r.status)
+        month = await r.json()
+        monthCache.set(key, month)
+      } catch (e) {
+        if (e && e.name === 'AbortError') return
+        renderUnavailable(date)
+        return
+      }
     }
+
+    var entry = (month.days || []).find(function (d) { return d.date === date })
+    if (!entry) {
+      renderUnavailable(date)
+      return
+    }
+    renderEntry(entry, date)
+  }
+
+  function setupTodayControls() {
+    document.getElementById('today-prev').addEventListener('click', function () {
+      todayState.date = shiftDate(todayState.date, -1)
+      loadCurrent()
+    })
+    document.getElementById('today-next').addEventListener('click', function () {
+      todayState.date = shiftDate(todayState.date, 1)
+      loadCurrent()
+    })
+    document.getElementById('today-reset').addEventListener('click', function () {
+      todayState.date = isoToday()
+      loadCurrent()
+    })
+    document.getElementById('today-country-select').addEventListener('change', function (e) {
+      todayState.country = e.target.value
+      loadCurrent()
+    })
   }
 
   async function loadManifest() {
@@ -1076,10 +1247,19 @@ npx days cache clear">Copy</button>
         var cc = chip.getAttribute('data-cc')
         chip.setAttribute('data-status', countries.indexOf(cc) >= 0 ? 'available' : 'planned')
       })
+
+      // Enable matching options in the today selector; planned countries stay disabled.
+      var sel = document.getElementById('today-country-select')
+      if (sel && countries.length) {
+        Array.from(sel.options).forEach(function (opt) {
+          opt.disabled = countries.indexOf(opt.value) < 0
+        })
+      }
     } catch (_) { /* leave fallbacks */ }
   }
 
-  loadToday()
+  setupTodayControls()
+  loadCurrent()
   loadManifest()
 })()
 </script>
