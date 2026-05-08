@@ -427,25 +427,25 @@ The `@claviscore/days` package ships a `days` binary for pre-downloading data in
 
 ```bash
 # Download BJ calendar for 2026
-npx days pull --country BJ --year 2026
+npx @claviscore/days pull --country BJ --year 2026
 
 # Multiple countries and years (comma-separated)
-npx days pull --country BJ,CI,SN --year 2026,2027
+npx @claviscore/days pull --country BJ,CI,SN --year 2026,2027
 
 # All UEMOA countries (convenience alias)
-npx days pull --uemoa --year 2026
+npx @claviscore/days pull --uemoa --year 2026
 
 # Override output path (default: .days/ at cwd)
-npx days pull --country BJ --year 2026 --out ./src/static/days
+npx @claviscore/days pull --country BJ --year 2026 --out ./src/static/days
 
 # Show locally cached data
-npx days cache list
+npx @claviscore/days cache list
 
 # Clear entire cache
-npx days cache clear
+npx @claviscore/days cache clear
 
 # Clear one country+year from cache
-npx days cache clear --country BJ --year 2026
+npx @claviscore/days cache clear --country BJ --year 2026
 ```
 
 **Behaviour:**

@@ -62,11 +62,11 @@ configure({
 
 ```bash
 # Pre-download a country/year for offline lookup
-npx days pull --country BJ --year 2026
+npx @claviscore/days pull --country BJ --year 2026
 
 # Inspect / clear cache
-npx days cache list
-npx days cache clear --country BJ --year 2026
+npx @claviscore/days cache list
+npx @claviscore/days cache clear --country BJ --year 2026
 ```
 
 Add `.days/` to your `.gitignore`.
