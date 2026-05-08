@@ -1,6 +1,6 @@
 {
   "name": "@claviscore/days",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Runtime-agnostic JavaScript client for the DaysUnit UEMOA calendar service — working days, public holidays, and calendar metadata for West African countries.",
   "license": "MIT",
   "author": {
@@ -43,14 +43,20 @@
   },
   "exports": {
     ".": {
-      "types":   "./dist/index.d.ts",
+      "types": "./dist/index.d.ts",
       "browser": "./dist/index.js",
-      "import":  "./dist/index.js",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "engines": { "node": ">=18" },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
