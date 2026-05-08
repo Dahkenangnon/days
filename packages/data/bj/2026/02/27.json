@@ -14,17 +14,17 @@
   "isWorkingDay": true,
   "isFirstWorkingDayOfMonth": false,
   "isLastWorkingDayOfMonth": true,
-  "isRamadanPeriod": false,
+  "isRamadanPeriod": true,
   "holidayName": null,
   "holidayType": null,
   "religiousAffiliation": null,
   "observedDate": null,
   "legalBasis": null,
   "source": null,
-  "verifiedAt": "2026-01-01",
+  "verifiedAt": "2026-05-08",
   "confidence": "confirmed",
   "weekNumber": 9,
   "quarter": 1,
   "workingDayOfMonth": 20,
-  "workingDayOfYear": 41
+  "workingDayOfYear": 39
 }

@@ -13,7 +13,7 @@
   "isPublicHoliday": false,
   "isWorkingDay": true,
   "isFirstWorkingDayOfMonth": false,
-  "isLastWorkingDayOfMonth": true,
+  "isLastWorkingDayOfMonth": false,
   "isRamadanPeriod": false,
   "holidayName": null,
   "holidayType": null,
@@ -21,10 +21,10 @@
   "observedDate": null,
   "legalBasis": null,
   "source": null,
-  "verifiedAt": "2026-01-01",
+  "verifiedAt": "2026-05-08",
   "confidence": "confirmed",
   "weekNumber": 48,
   "quarter": 4,
   "workingDayOfMonth": 20,
-  "workingDayOfYear": 230
+  "workingDayOfYear": 227
 }

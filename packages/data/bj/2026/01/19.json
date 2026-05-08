@@ -21,10 +21,10 @@
   "observedDate": null,
   "legalBasis": null,
   "source": null,
-  "verifiedAt": "2026-01-01",
+  "verifiedAt": "2026-05-08",
   "confidence": "confirmed",
   "weekNumber": 4,
   "quarter": 1,
-  "workingDayOfMonth": 12,
-  "workingDayOfYear": 12
+  "workingDayOfMonth": 10,
+  "workingDayOfYear": 10
 }

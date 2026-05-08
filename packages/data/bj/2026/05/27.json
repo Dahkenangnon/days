@@ -16,15 +16,15 @@
   "isLastWorkingDayOfMonth": false,
   "isRamadanPeriod": false,
   "holidayName": {
-    "fr": "Aïd el-Adha (Tabaski)",
+    "fr": "Aïd el-Kébir (Tabaski)",
     "en": "Eid al-Adha"
   },
   "holidayType": "religious",
   "religiousAffiliation": "islamic",
   "observedDate": null,
-  "legalBasis": null,
+  "legalBasis": "Loi n° 90-019 du 27 juillet 1990 fixant les fêtes légales en République du Bénin",
   "source": null,
-  "verifiedAt": "2026-01-01",
+  "verifiedAt": "2026-05-08",
   "confidence": "tentative",
   "weekNumber": 22,
   "quarter": 2,

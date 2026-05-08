@@ -22,7 +22,7 @@
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-05-02",
@@ -165,7 +165,7 @@
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-05-15",
@@ -286,7 +286,7 @@
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-05-26",

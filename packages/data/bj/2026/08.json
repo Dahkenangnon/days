@@ -9,9 +9,9 @@
   "timezone": "Africa/Porto-Novo",
   "year": 2026,
   "month": 8,
-  "workingDaysCount": 21,
+  "workingDaysCount": 20,
   "weekendDaysCount": 10,
-  "publicHolidaysCount": 2,
+  "publicHolidaysCount": 3,
   "days": [
     {
       "date": "2026-08-01",
@@ -22,7 +22,7 @@
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-08-02",
@@ -176,7 +176,7 @@
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-08-16",
@@ -292,12 +292,12 @@
       "date": "2026-08-26",
       "dayOfWeek": 3,
       "isWeekend": false,
-      "isPublicHoliday": false,
-      "isWorkingDay": true,
+      "isPublicHoliday": true,
+      "isWorkingDay": false,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "confirmed"
+      "confidence": "tentative"
     },
     {
       "date": "2026-08-27",

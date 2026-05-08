@@ -208,7 +208,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -219,7 +219,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -230,7 +230,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -241,7 +241,7 @@
       "isWorkingDay": false,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -252,7 +252,7 @@
       "isWorkingDay": false,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -263,7 +263,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -274,7 +274,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -285,7 +285,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -296,7 +296,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -307,7 +307,7 @@
       "isWorkingDay": true,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": true,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     },
     {
@@ -318,7 +318,7 @@
       "isWorkingDay": false,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
-      "isRamadanPeriod": false,
+      "isRamadanPeriod": true,
       "confidence": "confirmed"
     }
   ]

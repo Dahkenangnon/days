@@ -11,7 +11,7 @@
   "month": 7,
   "workingDaysCount": 23,
   "weekendDaysCount": 8,
-  "publicHolidaysCount": 1,
+  "publicHolidaysCount": 0,
   "days": [
     {
       "date": "2026-07-01",
@@ -292,12 +292,12 @@
       "date": "2026-07-26",
       "dayOfWeek": 7,
       "isWeekend": true,
-      "isPublicHoliday": true,
+      "isPublicHoliday": false,
       "isWorkingDay": false,
       "isFirstWorkingDayOfMonth": false,
       "isLastWorkingDayOfMonth": false,
       "isRamadanPeriod": false,
-      "confidence": "tentative"
+      "confidence": "confirmed"
     },
     {
       "date": "2026-07-27",
