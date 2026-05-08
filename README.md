@@ -22,36 +22,55 @@ DaysUnit provides per-day working day, public holiday, and calendar metadata for
 
 ## Table of Contents
 
-1. [What is DaysUnit?](#1-what-is-daysunit)
-2. [Countries](#2-countries)
-3. [Quick Start](#3-quick-start)
-4. [CDN Endpoints](#4-cdn-endpoints)
-5. [JSON Structure](#5-json-structure)
-   - [Single Day](#51-single-day)
-   - [Month Aggregate](#52-month-aggregate)
-   - [Year Summary](#53-year-summary)
-   - [Manifest](#54-manifest)
-6. [JavaScript Library — `@claviscore/days`](#6-javascript-library--claviscoreddays)
-   - [Installation](#61-installation)
-   - [Single day](#62-single-day)
-   - [Month](#63-month)
-   - [Range](#64-range)
-   - [Multi-country batch](#65-multi-country-batch)
-   - [Navigation helpers](#66-navigation-helpers)
-   - [Configuration](#67-configuration)
-   - [Resolver strategy](#68-resolver-strategy)
-   - [Error handling](#69-error-handling)
-7. [CLI — Offline Cache](#7-cli--offline-cache)
-8. [Data Quality & Confidence](#8-data-quality--confidence)
-9. [Versioning](#9-versioning)
-10. [Repository Structure](#10-repository-structure)
-11. [Development Setup](#11-development-setup)
-12. [Contributing](#12-contributing)
-13. [Maintainer Guide](#13-maintainer-guide)
-14. [Security](#14-security)
-15. [License](#15-license)
-16. [Authorship & Support](#authorship--support)
-17. [Disclaimer](DISCLAIMER.md)
+- [DaysUnit](#daysunit)
+  - [Table of Contents](#table-of-contents)
+  - [1. What is DaysUnit?](#1-what-is-daysunit)
+  - [2. Countries](#2-countries)
+  - [3. Quick Start](#3-quick-start)
+    - [CDN (no install)](#cdn-no-install)
+    - [JavaScript](#javascript)
+  - [4. CDN Endpoints](#4-cdn-endpoints)
+  - [5. JSON Structure](#5-json-structure)
+    - [5.1 Single Day](#51-single-day)
+    - [5.2 Month Aggregate](#52-month-aggregate)
+    - [5.3 Year Summary](#53-year-summary)
+    - [5.4 Manifest](#54-manifest)
+  - [6. JavaScript Library — `@claviscore/days`](#6-javascript-library--claviscoredays)
+    - [6.1 Installation](#61-installation)
+    - [6.2 Single day](#62-single-day)
+    - [6.3 Month](#63-month)
+    - [6.4 Range](#64-range)
+    - [6.5 Multi-country batch](#65-multi-country-batch)
+    - [6.6 Navigation helpers](#66-navigation-helpers)
+    - [6.7 Configuration](#67-configuration)
+    - [6.8 Resolver strategy](#68-resolver-strategy)
+    - [6.9 Error handling](#69-error-handling)
+  - [7. CLI — Offline Cache](#7-cli--offline-cache)
+  - [8. Data Quality \& Confidence](#8-data-quality--confidence)
+  - [9. Versioning](#9-versioning)
+    - [Data schema](#data-schema)
+    - [npm package](#npm-package)
+    - [Git tags](#git-tags)
+  - [10. Repository Structure](#10-repository-structure)
+  - [11. Development Setup](#11-development-setup)
+    - [Prerequisites](#prerequisites)
+    - [Install](#install)
+    - [Workspace scripts](#workspace-scripts)
+    - [Running schema validation locally](#running-schema-validation-locally)
+  - [12. Contributing](#12-contributing)
+    - [Summary of contribution types](#summary-of-contribution-types)
+  - [13. Maintainer Guide](#13-maintainer-guide)
+    - [Annual pre-generation (each November)](#annual-pre-generation-each-november)
+    - [Publishing a package release](#publishing-a-package-release)
+    - [Reviewing AI-proposed PRs (label: `ai-proposed`)](#reviewing-ai-proposed-prs-label-ai-proposed)
+  - [14. Security](#14-security)
+  - [15. License](#15-license)
+  - [Annex A — Field provenance](#annex-a--field-provenance)
+    - [A.1 Pure-computation fields (no source needed)](#a1-pure-computation-fields-no-source-needed)
+    - [A.2 Computed, but transitively dependent on holiday data](#a2-computed-but-transitively-dependent-on-holiday-data)
+    - [A.3 Legally-determined fields (require a verifiable source)](#a3-legally-determined-fields-require-a-verifiable-source)
+    - [A.4 Rule of thumb](#a4-rule-of-thumb)
+  - [Authorship \& Support](#authorship--support)
 
 ---
 
@@ -691,6 +710,66 @@ DaysUnit uses a dual licence so that code and data stay legally distinct:
 If you redistribute the calendar data, please attribute it as required by CC BY 4.0 — see [`packages/data/LICENSE`](packages/data/LICENSE) for the suggested attribution string.
 
 See [DISCLAIMER.md](DISCLAIMER.md) for the standard "as-is, no warranty" notice that applies to both.
+
+---
+
+## Annex A — Field provenance
+
+Every day record carries 25 fields. They split into three classes by how they are obtained — useful both for **users** (to know which values they can trust without an external source) and for **contributors** (to know which fields require a citation when adding a new country/year).
+
+> **What `confidence` actually qualifies.** The `confidence` field describes only the **legally-determined fields in §A.3** (and, by extension, the §A.2 fields that read `isPublicHoliday`). The §A.1 pure-computation fields — `dayOfWeek`, `isWeekend`, `weekNumber`, `quarter`, `date`, country/timezone identifiers — are **always trustworthy regardless of `confidence`**, because they are derived from the calendar itself and need no legal source. A record with `confidence: "tentative"` still has a fully reliable `dayOfWeek` and `isWeekend`; only the holiday-related claims should be treated as provisional.
+
+### A.1 Pure-computation fields (no source needed, always trustworthy)
+
+Deterministic from the date itself or from the country's static config. The `confidence` field does **not** qualify these — they are always safe to consume, even when the record is marked `tentative` or `ai-generated`.
+
+| Field | Derivation |
+|---|---|
+| `schemaVersion` | constant `"1.0"` |
+| `date` | input |
+| `country` | static config (e.g. `"BJ"`) |
+| `countryName` | static config |
+| `countryNames` | static config |
+| `timezone` | static config (IANA tz) |
+| `dayOfWeek` | ISO 8601 weekday (Mon=1 … Sun=7) |
+| `isWeekend` | `dayOfWeek ∈ {6, 7}` |
+| `weekNumber` | ISO 8601 week number |
+| `quarter` | `ceil(month / 3)` |
+| `verifiedAt` | metadata — date the record was generated/verified |
+
+### A.2 Computed, but transitively dependent on holiday data
+
+Derived by formula at aggregate-generation time, but the formula reads `isPublicHoliday`. They inherit confidence indirectly from the underlying holiday list.
+
+| Field | Formula |
+|---|---|
+| `isWorkingDay` | `!isWeekend && !isPublicHoliday` |
+| `isFirstWorkingDayOfMonth` | first day in month where `isWorkingDay === true` |
+| `isLastWorkingDayOfMonth` | last day in month where `isWorkingDay === true` |
+| `workingDayOfMonth` | rolling count within month (`null` on non-working days) |
+| `workingDayOfYear` | rolling count within year (`null` on non-working days) |
+
+### A.3 Legally-determined fields (require a verifiable source)
+
+Cannot be derived from the date — they come from a national law, government decree, or astronomical/religious observation. **These are the only fields that `confidence` qualifies**: a `confirmed` record means `legalBasis` + `source` have been verified against an official text; `tentative` means the legal text exists but the specific date depends on an unpublished annual decree or lunar observation; `ai-generated` means the values are model-proposed and pending human review.
+
+| Field | Why a source is required |
+|---|---|
+| `isPublicHoliday` | set by national law or annual decree |
+| `holidayName` | name as it appears in the official text |
+| `holidayType` | `national \| religious \| observance \| bridge \| school` per the decree |
+| `religiousAffiliation` | `christian \| islamic \| secular \| animist` |
+| `observedDate` | substitution rule — country-specific; only some jurisdictions shift weekend holidays |
+| `legalBasis` | citation of the law (e.g. `Loi n° 90-019 du 27 juillet 1990`) |
+| `source` | URL to the official text, gazette entry, or government communiqué |
+| `isRamadanPeriod` | Islamic lunar calendar — depends on observation/announcement, not pure date arithmetic |
+| `confidence` | `confirmed \| tentative \| ai-generated` — reflects the strength of the underlying source |
+
+### A.4 Rule of thumb
+
+- **A.1 fields** → always trustworthy. **`confidence` does not apply to them**; consume them directly even when the record is `tentative`. No citation needed in `tools/sources.json`.
+- **A.3 fields** → the only fields whose trust level is gated by `confidence`. Must come from a verifiable source. Use `tentative` for predicted Islamic dates or annual decrees not yet promulgated; downgrade to `ai-generated` for AI-assisted proposals pending review (see §13 *Reviewing AI-proposed PRs*).
+- **A.2 fields** → set automatically by `tools/generate-aggregates.ts`; never edit by hand. Inherit confidence from the §A.3 holiday data they depend on.
 
 ---
 

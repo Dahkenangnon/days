@@ -102,3 +102,63 @@ Full documentation, JSON schemas, and contributing guide:
 ## License
 
 [MIT](LICENSE) © 2026-Present Justin Dah-kenangnon
+
+---
+
+## Annex — Field provenance
+
+Each day record carries 25 fields. They split into three classes by how they are obtained — useful for understanding which values come from pure date arithmetic (always trustworthy) and which depend on legal or astronomical sources (where `confidence` matters).
+
+> **What `confidence` actually qualifies.** `confidence` only describes the legally-determined fields below (and the working-day fields that depend on them). The pure-computation fields (`dayOfWeek`, `isWeekend`, `weekNumber`, `quarter`, …) are **always trustworthy regardless of the `confidence` value** — a record marked `tentative` still has a fully reliable `dayOfWeek` and `isWeekend`; only its holiday-related claims should be treated as provisional.
+
+### Pure-computation fields (no source needed, always trustworthy)
+
+Deterministic from the date itself or from the country's static config. **`confidence` does not apply** to these — safe to consume even when the record is `tentative` or `ai-generated`.
+
+| Field | Derivation |
+|---|---|
+| `schemaVersion` | constant `"1.0"` |
+| `date` | input |
+| `country` | static config (e.g. `"BJ"`) |
+| `countryName` | static config |
+| `countryNames` | static config |
+| `timezone` | static config (IANA tz) |
+| `dayOfWeek` | ISO 8601 weekday (Mon=1 … Sun=7) |
+| `isWeekend` | `dayOfWeek ∈ {6, 7}` |
+| `weekNumber` | ISO 8601 week number |
+| `quarter` | `ceil(month / 3)` |
+| `verifiedAt` | metadata — date the record was generated/verified |
+
+### Computed, but transitively dependent on holiday data
+
+Derived by formula at aggregate-generation time, but the formula reads `isPublicHoliday`. They inherit confidence indirectly from the underlying holiday list.
+
+| Field | Formula |
+|---|---|
+| `isWorkingDay` | `!isWeekend && !isPublicHoliday` |
+| `isFirstWorkingDayOfMonth` | first day in month where `isWorkingDay === true` |
+| `isLastWorkingDayOfMonth` | last day in month where `isWorkingDay === true` |
+| `workingDayOfMonth` | rolling count within month (`null` on non-working days) |
+| `workingDayOfYear` | rolling count within year (`null` on non-working days) |
+
+### Legally-determined fields (require a verifiable source)
+
+Cannot be derived from the date — they come from a national law, government decree, or astronomical/religious observation. **These are the only fields that `confidence` qualifies**: `confirmed` means `legalBasis` + `source` are verified against an official text; `tentative` means the date depends on an unpublished annual decree or lunar observation; `ai-generated` means the values are model-proposed and pending human review.
+
+| Field | Why a source is required |
+|---|---|
+| `isPublicHoliday` | set by national law or annual decree |
+| `holidayName` | name as it appears in the official text |
+| `holidayType` | `national \| religious \| observance \| bridge \| school` per the decree |
+| `religiousAffiliation` | `christian \| islamic \| secular \| animist` |
+| `observedDate` | substitution rule — country-specific; only some jurisdictions shift weekend holidays |
+| `legalBasis` | citation of the law (e.g. `Loi n° 90-019 du 27 juillet 1990`) |
+| `source` | URL to the official text, gazette entry, or government communiqué |
+| `isRamadanPeriod` | Islamic lunar calendar — depends on observation/announcement, not pure date arithmetic |
+| `confidence` | `confirmed \| tentative \| ai-generated` — reflects the strength of the underlying source |
+
+### Rule of thumb
+
+- **Pure-computation fields** → always trustworthy. `confidence` does not apply to them; use them directly even when the record is `tentative`.
+- **Legally-determined fields** → the only fields whose trust level is gated by `confidence`. Must come from a verifiable source.
+- **Computed-but-dependent fields** → never edited by hand; produced by `tools/generate-aggregates.ts`. Inherit confidence from the holiday data they depend on.

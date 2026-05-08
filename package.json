@@ -12,7 +12,10 @@
     "test:js": "pnpm --filter @claviscore/days run test",
     "typecheck:js": "pnpm --filter @claviscore/days run typecheck",
     "generate": "tsx tools/generate-aggregates.ts",
-    "render-assets": "bash tools/render-assets.sh"
+    "render-assets": "bash tools/render-assets.sh",
+    "release:js:patch": "npm --prefix packages/js version patch --no-git-tag-version && V=$(node -p \"require('./packages/js/package.json').version\") && git add packages/js/package.json && git commit -m \"chore: release @claviscore/days v$V\" && git tag js/v$V && git push && git push origin js/v$V",
+    "release:js:minor": "npm --prefix packages/js version minor --no-git-tag-version && V=$(node -p \"require('./packages/js/package.json').version\") && git add packages/js/package.json && git commit -m \"chore: release @claviscore/days v$V\" && git tag js/v$V && git push && git push origin js/v$V",
+    "release:js:major": "npm --prefix packages/js version major --no-git-tag-version && V=$(node -p \"require('./packages/js/package.json').version\") && git add packages/js/package.json && git commit -m \"chore: release @claviscore/days v$V\" && git tag js/v$V && git push && git push origin js/v$V"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

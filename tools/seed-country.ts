@@ -8,11 +8,18 @@
  * Usage:
  *   pnpm tsx tools/seed-country.ts --country BJ --year 2026
  *   pnpm tsx tools/seed-country.ts --country BJ,CI --year 2026 --dry-run
+ *   pnpm tsx tools/seed-country.ts --country BJ --year 2026 --verified-at 2026-05-08
  *
- * Notes:
- *   - Does NOT compute isFirstWorkingDayOfMonth / isLastWorkingDayOfMonth /
- *     workingDayOfMonth / workingDayOfYear — those are generate-aggregates' job.
- *   - isRamadanPeriod requires a Ramadan date range in sources.json (future work).
+ * What is computed automatically (no manual input needed):
+ *   - dayOfWeek, isWeekend, weekNumber, quarter   (pure date arithmetic)
+ *   - isWorkingDay                                (!weekend && !isPublicHoliday)
+ *   - isRamadanPeriod                             (from country.ramadan range, when set)
+ *   - observedDate + substituted holiday entries  (from country.observedDateRule)
+ *   - verifiedAt                                  (today, or --verified-at override)
+ *
+ * What is NOT computed here (patched later by generate-aggregates.ts):
+ *   - isFirstWorkingDayOfMonth, isLastWorkingDayOfMonth
+ *   - workingDayOfMonth, workingDayOfYear
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
@@ -29,20 +36,34 @@ const SOURCES_PATH = join(__dirname, 'sources.json')
 // Types (local to this script — no package import)
 // ---------------------------------------------------------------------------
 
+type SubstitutionRule =
+  | 'none'
+  | 'shift-sunday-to-monday'
+  | 'shift-weekend-to-monday'
+
 interface HolidayDef {
   date: string
   name: { fr: string; en: string; [k: string]: string }
-  type: string
-  religiousAffiliation: string | null
+  type: 'national' | 'religious' | 'observance' | 'bridge' | 'school'
+  religiousAffiliation: 'christian' | 'islamic' | 'secular' | 'animist' | null
   legalBasis: string | null
   source: string | null
   confidence: 'confirmed' | 'tentative' | 'ai-generated'
+}
+
+interface RamadanRange {
+  start: string
+  end: string
 }
 
 interface CountryDef {
   timezone: string
   countryName: string
   countryNames: { fr: string; en: string; pt?: string; [k: string]: string | undefined }
+  /** Optional. Defaults to 'none' (no weekend-holiday shifting). */
+  observedDateRule?: SubstitutionRule
+  /** Optional. Map of year → Ramadan start/end (inclusive ISO dates). */
+  ramadan?: Record<string, RamadanRange>
   holidays: Record<string, HolidayDef[]>
 }
 
@@ -60,7 +81,7 @@ function isoDayOfWeek(date: Date): number {
   return d === 0 ? 7 : d
 }
 
-function isWeekend(date: Date): boolean {
+function isWeekendDate(date: Date): boolean {
   const d = date.getUTCDay()
   return d === 0 || d === 6
 }
@@ -86,8 +107,107 @@ function daysInMonth(year: number, month: number): number {
   return new Date(Date.UTC(year, month, 0)).getUTCDate()
 }
 
-function toISO(date: Date): string {
+function toISODate(date: Date): string {
   return `${date.getUTCFullYear()}-${pad2(date.getUTCMonth() + 1)}-${pad2(date.getUTCDate())}`
+}
+
+function todayISO(): string {
+  return new Date().toISOString().slice(0, 10)
+}
+
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+
+function assertISODate(s: string, label: string): void {
+  if (!ISO_DATE_RE.test(s)) {
+    throw new Error(`Invalid ISO date for ${label}: ${s}`)
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Field computation
+// ---------------------------------------------------------------------------
+
+/** Inclusive [start, end] check on ISO-date strings (lexicographic == chronological). */
+function isInRamadanPeriod(
+  dateStr: string,
+  ramadan: Record<string, RamadanRange> | undefined,
+  year: number,
+): boolean {
+  if (!ramadan) return false
+  const range = ramadan[String(year)]
+  if (!range) return false
+  return dateStr >= range.start && dateStr <= range.end
+}
+
+/**
+ * Compute the observed rest day for a holiday that lands on a weekend.
+ * Walks forward day-by-day until it finds a non-weekend, non-holiday date.
+ * Returns null when the rule is 'none' or the holiday is not on a weekend.
+ */
+function computeObservedDate(
+  holidayDate: Date,
+  rule: SubstitutionRule,
+  holidayDates: Set<string>,
+): string | null {
+  if (rule === 'none') return null
+  const dow = holidayDate.getUTCDay() // 0=Sun, 6=Sat
+  const isSat = dow === 6
+  const isSun = dow === 0
+
+  let needsShift = false
+  if (rule === 'shift-weekend-to-monday') needsShift = isSat || isSun
+  else if (rule === 'shift-sunday-to-monday') needsShift = isSun
+
+  if (!needsShift) return null
+
+  // Walk forward until we find a non-weekend, non-holiday date. Bound the loop
+  // so a pathological config (e.g. seven consecutive holidays) cannot hang.
+  const candidate = new Date(holidayDate)
+  for (let i = 0; i < 14; i++) {
+    candidate.setUTCDate(candidate.getUTCDate() + 1)
+    const cdow = candidate.getUTCDay()
+    const cstr = toISODate(candidate)
+    if (cdow !== 0 && cdow !== 6 && !holidayDates.has(cstr)) {
+      return cstr
+    }
+  }
+  return null
+}
+
+/**
+ * Expand the source-defined holiday list with synthetic "observance" entries
+ * for substituted weekend holidays, so the substituted day is itself flagged
+ * as a public holiday with consistent metadata.
+ */
+function expandWithSubstitutes(
+  defined: HolidayDef[],
+  rule: SubstitutionRule,
+): { expanded: Map<string, HolidayDef>; observedDateOf: Map<string, string> } {
+  const byDate = new Map<string, HolidayDef>(defined.map(h => [h.date, h]))
+  const observedDateOf = new Map<string, string>()
+  const definedDates = new Set(byDate.keys())
+
+  if (rule === 'none') return { expanded: byDate, observedDateOf }
+
+  for (const h of defined) {
+    assertISODate(h.date, `holiday ${h.name?.en ?? h.date}`)
+    const [y, m, d] = h.date.split('-').map(Number)
+    const date = new Date(Date.UTC(y, m - 1, d))
+    const observed = computeObservedDate(date, rule, definedDates)
+    if (!observed) continue
+
+    observedDateOf.set(h.date, observed)
+
+    // Avoid clobbering an existing holiday on the substituted date.
+    if (!byDate.has(observed)) {
+      byDate.set(observed, {
+        ...h,
+        date: observed,
+        type: 'observance',
+      })
+    }
+  }
+  return { expanded: byDate, observedDateOf }
 }
 
 // ---------------------------------------------------------------------------
@@ -98,13 +218,13 @@ async function seedCountryYear(
   countryCode: string,
   year: number,
   def: CountryDef,
+  verifiedAt: string,
   dryRun: boolean,
 ): Promise<void> {
-  const holidays = new Map<string, HolidayDef>(
-    (def.holidays[String(year)] ?? []).map(h => [h.date, h]),
-  )
+  const definedHolidays = def.holidays[String(year)] ?? []
+  const rule: SubstitutionRule = def.observedDateRule ?? 'none'
+  const { expanded: holidays, observedDateOf } = expandWithSubstitutes(definedHolidays, rule)
 
-  const verifiedAt = `${year}-01-01`
   let filesWritten = 0
 
   for (let month = 1; month <= 12; month++) {
@@ -114,10 +234,11 @@ async function seedCountryYear(
       const dateStr = `${year}-${pad2(month)}-${pad2(day)}`
       const date = new Date(Date.UTC(year, month - 1, day))
 
-      const weekend = isWeekend(date)
+      const weekend = isWeekendDate(date)
       const holiday = holidays.get(dateStr)
       const isPublicHoliday = !!holiday
       const isWorkingDay = !weekend && !isPublicHoliday
+      const observedDate = observedDateOf.get(dateStr) ?? null
 
       const record = {
         schemaVersion: '1.0',
@@ -132,11 +253,11 @@ async function seedCountryYear(
         isWorkingDay,
         isFirstWorkingDayOfMonth: false, // patched by generate-aggregates
         isLastWorkingDayOfMonth: false,  // patched by generate-aggregates
-        isRamadanPeriod: false,          // TODO: derive from Ramadan range in sources.json
+        isRamadanPeriod: isInRamadanPeriod(dateStr, def.ramadan, year),
         holidayName: holiday?.name ?? null,
         holidayType: holiday?.type ?? null,
         religiousAffiliation: holiday?.religiousAffiliation ?? null,
-        observedDate: null,
+        observedDate,
         legalBasis: holiday?.legalBasis ?? null,
         source: holiday?.source ?? null,
         verifiedAt,
@@ -180,6 +301,7 @@ async function main(): Promise<void> {
     options: {
       country: { type: 'string', short: 'c' },
       year:    { type: 'string', short: 'y' },
+      'verified-at': { type: 'string' },
       'dry-run': { type: 'boolean', default: false },
     },
   })
@@ -195,9 +317,14 @@ async function main(): Promise<void> {
     .filter(n => Number.isFinite(n) && n > 2000)
 
   if (countryCodes.length === 0 || years.length === 0) {
-    console.error('Usage: tsx tools/seed-country.ts --country BJ --year 2026')
+    console.error(
+      'Usage: tsx tools/seed-country.ts --country BJ --year 2026 [--verified-at YYYY-MM-DD] [--dry-run]',
+    )
     process.exit(1)
   }
+
+  const verifiedAt = values['verified-at'] ?? todayISO()
+  assertISODate(verifiedAt, '--verified-at')
 
   const sourcesRaw = await readFile(SOURCES_PATH, 'utf-8')
   const sources: Sources = JSON.parse(sourcesRaw)
@@ -209,7 +336,7 @@ async function main(): Promise<void> {
       process.exit(1)
     }
     for (const year of years) {
-      await seedCountryYear(code, year, def, values['dry-run'] ?? false)
+      await seedCountryYear(code, year, def, verifiedAt, values['dry-run'] ?? false)
     }
   }
 }

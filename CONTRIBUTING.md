@@ -19,6 +19,7 @@ Thank you for helping improve West African calendar data and the DaysUnit librar
   - [4. Adding Data for a New Country or Year](#4-adding-data-for-a-new-country-or-year)
     - [Day file format](#day-file-format)
     - [Confidence rules](#confidence-rules)
+    - [`tools/sources.json` — country-level fields](#toolssourcesjson--country-level-fields)
   - [5. Library Contributions](#5-library-contributions)
   - [6. Commit \& Branch Conventions](#6-commit--branch-conventions)
     - [Branch naming](#branch-naming)
@@ -209,6 +210,39 @@ pnpm generate -- --year 2026 --country BJ
 | `confirmed` | Verified against an official source you can link |
 | `tentative` | Best estimate; no fully authoritative source available |
 | `ai-generated` | **Do not submit in PRs.** This value is reserved for the automated monitor. |
+
+### `tools/sources.json` — country-level fields
+
+Each country entry in `tools/sources.json` accepts the following fields. The seeder reads these and populates the §A fields automatically (see [README §Annex A](./README.md#annex-a--field-provenance) for the field-provenance taxonomy):
+
+| Field | Required | Purpose |
+|---|---|---|
+| `timezone` | ✓ | IANA timezone (e.g. `Africa/Porto-Novo`) |
+| `countryName` | ✓ | Native-language country name |
+| `countryNames` | ✓ | i18n map; `fr` and `en` mandatory, `pt` mandatory for Guinea-Bissau |
+| `holidays["YYYY"]` | ✓ | Array of holiday definitions for the year |
+| `observedDateRule` | optional | One of `"none"` (default), `"shift-sunday-to-monday"`, `"shift-weekend-to-monday"`. Drives the auto-computation of `observedDate` and the auto-creation of synthetic `observance` entries on the substituted date. |
+| `ramadan["YYYY"]` | optional | `{ "start": "YYYY-MM-DD", "end": "YYYY-MM-DD" }` — inclusive date range used to flag `isRamadanPeriod: true`. Required for ML, NE, SN, BF where it carries legal weight; optional elsewhere. |
+| `references` | optional | Array of `{ url, description }` entries documenting the research sources used to verify the holiday list. Not consumed by tooling — kept for human auditability. Append new sources whenever a year is added or a date is corrected. |
+
+A minimal new-country entry looks like:
+
+```jsonc
+"XX": {
+  "timezone": "Africa/Some_City",
+  "countryName": "...",
+  "countryNames": { "fr": "...", "en": "..." },
+  "observedDateRule": "none",
+  "references": [
+    { "url": "https://...", "description": "Official gazette listing" }
+  ],
+  "holidays": {
+    "2026": [ /* HolidayDef[] — see existing entries for shape */ ]
+  }
+}
+```
+
+The `references` array is the primary place to record per-country source URLs (Wikipedia, official gazette, government communiqués, calendar cross-checks, lunar-prediction tables, etc.). Per-holiday `source` URLs still belong on the individual `HolidayDef` entries — `references` is for the broader research trail.
 
 ---
 
