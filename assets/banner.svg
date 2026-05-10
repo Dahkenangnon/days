@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img"
-     aria-label="DaysUnit 1.0 — open calendar data for West Africa">
-  <title>DaysUnit 1.0 — open calendar data for West Africa</title>
+    aria-label="DaysUnit — open calendar data for West Africa">
+  <title>DaysUnit — open calendar data for West Africa</title>
 
   <defs>
     <!-- Navy "blueprint" gradient (matching the reference) -->
@@ -86,7 +86,7 @@
   </g>
 
   <!-- ─── Headline ─────────────────────────────────────────── -->
-  <text x="64" y="138" class="title" font-size="62">DaysUnit 1.0</text>
+  <text x="64" y="138" class="title" font-size="62">DaysUnit</text>
   <text x="64" y="208" class="title" font-size="62">for <tspan class="title-em">West&#160;Africa</tspan>.</text>
 
   <!-- ─── Feature pills ────────────────────────────────────── -->
