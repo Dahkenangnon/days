@@ -9,7 +9,7 @@
 DaysUnit provides per-day working day, public holiday, and calendar metadata for UEMOA member states as static JSON files served over a global CDN — no API keys, no rate limits, no backend costs.
 
 [![npm](https://img.shields.io/npm/v/@claviscore/days)](https://www.npmjs.com/package/@claviscore/days)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Validate data schema](https://github.com/Dahkenangnon/days/actions/workflows/validate.yml/badge.svg)](https://github.com/Dahkenangnon/days/actions/workflows/validate.yml)
 
 **Primary consumers:** SaaS applications in the UEMOA zone — payroll, accounting (SYSCOHADA), HR, leave management, scheduling.
@@ -706,7 +706,7 @@ DaysUnit uses a dual licence so that code and data stay legally distinct:
 
 | Asset | License |
 |---|---|
-| Source code (`packages/js/`, `tools/`) | [MIT](LICENSE) |
+| Source code (`packages/js/`, `tools/`) | [Apache-2.0](LICENSE) |
 | Calendar data (`packages/data/`) | [CC BY 4.0](packages/data/LICENSE) |
 
 If you redistribute the calendar data, please attribute it as required by CC BY 4.0 — see [`packages/data/LICENSE`](packages/data/LICENSE) for the suggested attribution string.

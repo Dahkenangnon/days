@@ -1,8 +1,8 @@
 {
   "name": "@claviscore/days",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Runtime-agnostic JavaScript client for the DaysUnit UEMOA calendar service — working days, public holidays, and calendar metadata for West African countries.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": {
     "name": "Justin Dah-kenangnon",
     "email": "dah.kenangnon@gmail.com",

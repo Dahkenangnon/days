@@ -8,7 +8,7 @@ Runtime-agnostic JavaScript client for the [DaysUnit](https://days.claviscore.co
 Working days, public holidays, and calendar metadata for West African countries — fetched from a static CDN, no API keys, no rate limits.
 
 [![npm](https://img.shields.io/npm/v/@claviscore/days)](https://www.npmjs.com/package/@claviscore/days)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 **Runs on:** Browser, Node ≥ 18, Deno, Bun. Zero calendar data is bundled — files are fetched at runtime or pulled into a local cache via the `days` CLI.
 
@@ -103,7 +103,7 @@ Full documentation, JSON schemas, and contributing guide:
 
 ## License
 
-[MIT](LICENSE) © 2026-Present Justin Dah-kenangnon
+[Apache-2.0](LICENSE) © 2026-Present Justin Dah-kenangnon
 
 ---
 
