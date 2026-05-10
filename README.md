@@ -93,6 +93,8 @@ DaysUnit is a zero-infrastructure, open calendar data service for West African c
 
 **V1 launch — Bénin only.** Calendar data for the remaining UEMOA member states is on the immediate roadmap and will be added under the same schema with no breaking changes.
 
+> ⚠️ **Early-access notice:** Bénin (`BJ`) is the only country currently available. The dataset is still being reviewed and may contain inaccurate dates. **Do not use it in production applications yet.** We are actively fixing known issues — watch this repository for the first stable release announcement.
+
 | Code | Country | Official Language | `countryNames` locales | V1 status |
 |------|---------|-------------------|------------------------|-----------|
 | `BJ` | Bénin | French | `fr`, `en` | ✅ available |

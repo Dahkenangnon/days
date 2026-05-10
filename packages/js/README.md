@@ -12,6 +12,8 @@ Working days, public holidays, and calendar metadata for West African countries 
 
 **Runs on:** Browser, Node ≥ 18, Deno, Bun. Zero calendar data is bundled — files are fetched at runtime or pulled into a local cache via the `days` CLI.
 
+> ⚠️ **Early-access notice:** Only Bénin (`BJ`) data is currently available, and it is still being reviewed. It may contain inaccurate dates. **Do not use it in production applications yet.** We are actively fixing known issues — watch the repository for the first stable release announcement.
+
 ## Install
 
 ```bash
