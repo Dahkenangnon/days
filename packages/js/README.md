@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://days.claviscore.com/banner.png" alt="DaysUnit — open calendar data for West Africa" width="100%">
+  <img src="https://days.claviscore.com/africa-aware.png" alt="DaysUnit — open calendar data for West Africa" width="100%">
 </p>
 
 # @claviscore/days

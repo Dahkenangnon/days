@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="DaysUnit — open calendar data for West Africa" width="100%">
+  <img src="packages/data/africa-aware.png" alt="DaysUnit — open calendar data for West Africa" width="100%">
 </p>
 
 # DaysUnit
@@ -66,7 +66,7 @@ DaysUnit provides per-day working day, public holiday, and calendar metadata for
   - [14. Security](#14-security)
   - [15. License](#15-license)
   - [Annex A — Field provenance](#annex-a--field-provenance)
-    - [A.1 Pure-computation fields (no source needed)](#a1-pure-computation-fields-no-source-needed)
+    - [A.1 Pure-computation fields (no source needed, always trustworthy)](#a1-pure-computation-fields-no-source-needed-always-trustworthy)
     - [A.2 Computed, but transitively dependent on holiday data](#a2-computed-but-transitively-dependent-on-holiday-data)
     - [A.3 Legally-determined fields (require a verifiable source)](#a3-legally-determined-fields-require-a-verifiable-source)
     - [A.4 Rule of thumb](#a4-rule-of-thumb)
