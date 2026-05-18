@@ -21,7 +21,7 @@
   "devDependencies": {
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "tsx": "^4.19.2",
+    "tsx": "^4.22.1",
     "typescript": "^6.0.3"
   }
 }
