@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "date": "2026-02-18",
+  "country": "TG",
+  "countryName": "Togo",
+  "countryNames": {
+    "fr": "Togo",
+    "en": "Togo"
+  },
+  "timezone": "Africa/Lome",
+  "dayOfWeek": 3,
+  "isWeekend": false,
+  "isPublicHoliday": true,
+  "isWorkingDay": false,
+  "isFirstWorkingDayOfMonth": false,
+  "isLastWorkingDayOfMonth": false,
+  "isRamadanPeriod": true,
+  "holidayName": {
+    "fr": "Début du Ramadan",
+    "en": "Ramadan Begins"
+  },
+  "holidayType": "religious",
+  "religiousAffiliation": "islamic",
+  "observedDate": null,
+  "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+  "source": null,
+  "verifiedAt": "2026-05-31",
+  "confidence": "tentative",
+  "weekNumber": 8,
+  "quarter": 1,
+  "workingDayOfMonth": null,
+  "workingDayOfYear": null
+}

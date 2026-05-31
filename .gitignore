@@ -57,3 +57,5 @@ packages/data/**/*.json
 !packages/data/manifest.json
 !packages/data/bj/2026.json
 !packages/data/bj/2026/**/*.json
+!packages/data/tg/2026.json
+!packages/data/tg/2026/**/*.json

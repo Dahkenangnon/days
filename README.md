@@ -91,9 +91,9 @@ DaysUnit is a zero-infrastructure, open calendar data service for West African c
 
 ## 2. Countries
 
-**V1 launch — Bénin only.** Calendar data for the remaining UEMOA member states is on the immediate roadmap and will be added under the same schema with no breaking changes.
+**V1 launch — Bénin and Togo.** Calendar data for the remaining UEMOA member states is on the immediate roadmap and will be added under the same schema with no breaking changes.
 
-> ⚠️ **Early-access notice:** Bénin (`BJ`) is the only country currently available. The dataset is still being reviewed and may contain inaccurate dates. **Do not use it in production applications yet.** We are actively fixing known issues — watch this repository for the first stable release announcement.
+> ⚠️ **Early-access notice:** Bénin (`BJ`) and Togo (`TG`) are the countries currently available. The datasets are still being reviewed and may contain inaccurate dates. **Do not use them in production applications yet.** We are actively fixing known issues — watch this repository for the first stable release announcement.
 
 | Code | Country | Official Language | `countryNames` locales | V1 status |
 |------|---------|-------------------|------------------------|-----------|
@@ -104,7 +104,7 @@ DaysUnit is a zero-infrastructure, open calendar data service for West African c
 | `ML` | Mali | French | `fr`, `en` | 🟡 roadmap |
 | `NE` | Niger | French | `fr`, `en` | 🟡 roadmap |
 | `SN` | Sénégal | French | `fr`, `en` | 🟡 roadmap |
-| `TG` | Togo | French | `fr`, `en` | 🟡 roadmap |
+| `TG` | Togo | French | `fr`, `en` | ✅ available |
 
 The `manifest.json` always reflects the actually-deployed coverage, so clients should consult it at runtime rather than hard-coding country lists. As each country is added, it will appear in `manifest.json#/countries` and become fetchable at `/{country}/{year}/...` without any client-library change.
 
