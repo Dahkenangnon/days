@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
-  "lastUpdated": "2026-05-07",
-  "countries": ["BJ"],
+  "lastUpdated": "2026-05-31",
+  "countries": ["BJ", "TG"],
   "yearsAvailable": [2026],
   "baseUrl": "https://days.claviscore.com",
   "endpoints": {

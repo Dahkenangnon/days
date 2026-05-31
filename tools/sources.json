@@ -222,6 +222,144 @@
     "timezone": "Africa/Lome",
     "countryName": "Togo",
     "countryNames": { "fr": "Togo", "en": "Togo" },
-    "holidays": {}
+    "observedDateRule": "none",
+    "ramadan": {
+      "2026": { "start": "2026-02-18", "end": "2026-03-19" }
+    },
+    "references": [
+      {
+        "url": null,
+        "description": "Ordonnance n° 79/10 réglementant le régime des fêtes légales (canon basis)"
+      },
+      {
+        "url": null,
+        "description": "Article 10 du Code du Travail"
+      },
+      {
+        "url": null,
+        "description": "Article 42 de la Convention Collective Interprofessionnelle"
+      }
+    ],
+    "holidays": {
+      "2026": [
+        {
+          "date": "2026-01-01",
+          "name": { "fr": "Jour de l'An", "en": "New Year's Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-01-13",
+          "name": { "fr": "Journée nationale", "en": "National Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-02-18",
+          "name": { "fr": "Début du Ramadan", "en": "Ramadan Begins" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-03-20",
+          "name": { "fr": "Aïd el-Fitr (Fin du Ramadan)", "en": "Eid al-Fitr" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-04-06",
+          "name": { "fr": "Lundi de Pâques", "en": "Easter Monday" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-05-01",
+          "name": { "fr": "Fête du Travail", "en": "Labour Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-05-14",
+          "name": { "fr": "Ascension", "en": "Ascension Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-05-25",
+          "name": { "fr": "Lundi de Pentecôte", "en": "Whit Monday" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-05-27",
+          "name": { "fr": "Aïd el-Kébir (Tabaski)", "en": "Eid al-Adha" },
+          "type": "religious",
+          "religiousAffiliation": "islamic",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-05-31",
+          "name": { "fr": "Fête nationale du Togo", "en": "Togo Independence Day" },
+          "type": "national",
+          "religiousAffiliation": null,
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-08-15",
+          "name": { "fr": "Assomption de Marie", "en": "Assumption of Mary" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-11-01",
+          "name": { "fr": "Toussaint", "en": "All Saints' Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        },
+        {
+          "date": "2026-12-25",
+          "name": { "fr": "Noël", "en": "Christmas Day" },
+          "type": "religious",
+          "religiousAffiliation": "christian",
+          "legalBasis": "Ordonnance n° 79/10 réglementant le régime des fêtes légales",
+          "source": null,
+          "confidence": "tentative"
+        }
+      ]
+    }
   }
 }
